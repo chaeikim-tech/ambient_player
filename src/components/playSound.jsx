@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import ambImg1 from '../assets/images/ambImg1.jpg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -9,33 +10,49 @@ const AmbImgOne = styled.img`
     height: 100vh;
 `;
 
-export const AudioPlayer = ({ imgSrc, audioSrc }) => {
-    const [status, setStatus] = useState({
-        isPlaying: false,
-        isLoop: false,
-        isLoaded: false,
-        error: false,
-    });
-    const audioRef = useRef(null);
+const INITIAL = "INITIAL";
+const PLAYING = "PLAYING";
+const PAUSED = "PAUSED";
+const ENDED = "ENDED";
 
-    const toggleAudio = () =>
-        status.isLoaded
-            ? status.isPlaying
-                ? audioRef.current.pause()
-                : audioRef.current.play()
-            : console.log("Audio has not loaded yet.");
+
+const ToggleIcon = ({ status }) => {
+    switch (status) {
+        case INITIAL:
+            return <FontAwesomeIcon icon={faPlay} />;
+        case PLAYING:
+            return <FontAwesomeIcon icon={faPlay} />;
+        case PAUSED:
+            return <FontAwesomeIcon icon={faPause} />;
+        default:
+            return <FontAwesomeIcon icon={faPlay} />;
+    }
+};
+
+
+export const AudioPlayer = ({ audioFile }) => {
+    const [status, setStatus] = useState(INITIAL);
+    const audioEl = useRef(null);
+
+    const onToggleClick = () => {
+        const audio = audioEl.current;
+        audio.paused ? audio.play() : audio.pause();
+    };
 
     return (
-        <>
-            <AmbImgOne src={ambImg1} onClick={toggleAudio} />
+        <div className="Player">
             <audio
-                ref={audioRef}
-                src={audioSrc}
-                onLoad={() => setStatus({ ...status, isLoaded: true })}
-                onPlay={() => setStatus({ ...status, isPlaying: true })}
-                onPause={() => setStatus({ ...status, isPlaying: false })}
-                onError={() => setStatus({ ...status, error: true })}
+                onPlaying={() => setStatus(PLAYING)}
+                onPause={() => setStatus(PAUSED)}
+                onEnded={() => setStatus(ENDED)}
+                ref={audioEl}
+                src={audioFile}
             />
-        </>
+            <div className="controls">
+                <button onClick={onToggleClick} className="toggle">
+                    <ToggleIcon status={status} />
+                </button>
+            </div>
+        </div>
     );
 };
