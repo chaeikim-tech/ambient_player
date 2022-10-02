@@ -18,7 +18,6 @@ const Img = styled.img`
     width: 100%;
     height: 100%;
     text-align: center;
-    color: #FFF;
     object-fit: cover;
     font-size: 12px;
     text-transform: uppercase;
@@ -26,6 +25,7 @@ const Img = styled.img`
     position: absolute;
     left: 0;
     top:0;
+    opacity: 0.5;
 `;
 
 const Test = styled.div`
@@ -37,12 +37,14 @@ const Test = styled.div`
     z-index: -1;
     &:hover ${Img}{
         z-index: -1000;
+        opacity:1;
     }
 `;
 
+
 export default () => {
     return (
-        <ReactCardCarousel initial_index={0}>
+        <ReactCardCarousel disable_keydown={true} >
             <Test>
                 <Img src={ambImg1} />
                 <AudioPlayer audioFile={ambAudio1} />

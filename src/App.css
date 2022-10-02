@@ -1,3 +1,28 @@
 .App {
   text-align: center;
 }
+
+.Player,
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Player {
+  height: 400px;
+  width: 600px;
+}
+
+.controls button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  border-radius: 50%;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  color: #8BBCCC;
+}

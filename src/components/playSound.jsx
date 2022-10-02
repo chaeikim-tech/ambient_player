@@ -1,37 +1,26 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 
-
-const AmbImgOne = styled.img`
-    width:100vw;
-    height: 100vh;
-`;
-
-const INITIAL = "INITIAL";
 const PLAYING = "PLAYING";
 const PAUSED = "PAUSED";
-const ENDED = "ENDED";
 
 
 const ToggleIcon = ({ status }) => {
     switch (status) {
-        case INITIAL:
-            return <FontAwesomeIcon icon={faPlay} />;
         case PLAYING:
-            return <FontAwesomeIcon icon={faPlay} />;
+            return <FontAwesomeIcon className='ToggleIcon' icon={faPause} size="3x" />;
         case PAUSED:
-            return <FontAwesomeIcon icon={faPause} />;
+            return <FontAwesomeIcon className='ToggleIcon' icon={faPlay} size="3x" />;
         default:
-            return <FontAwesomeIcon icon={faPlay} />;
+            return <FontAwesomeIcon className='ToggleIcon' icon={faPause} size="3x" />;
     }
 };
 
 
 export const AudioPlayer = ({ audioFile }) => {
-    const [status, setStatus] = useState(INITIAL);
+    const [status, setStatus] = useState(PAUSED);
     const audioEl = useRef(null);
 
     const onToggleClick = () => {
@@ -44,13 +33,12 @@ export const AudioPlayer = ({ audioFile }) => {
             <audio
                 onPlaying={() => setStatus(PLAYING)}
                 onPause={() => setStatus(PAUSED)}
-                onEnded={() => setStatus(ENDED)}
                 ref={audioEl}
                 src={audioFile}
             />
             <div className="controls">
-                <button onClick={onToggleClick} className="toggle">
-                    <ToggleIcon status={status} />
+                <button onClick={onToggleClick}>
+                    <ToggleIcon status={status} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} />
                 </button>
             </div>
         </div>
