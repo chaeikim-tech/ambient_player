@@ -18,3 +18,5 @@ Project Idea for Web Apps to Build on ReactJS
   * 스타일 관련 라이브러리 : styled-components
 
 
+* 배포
+  * Vercel 사용 (https://ambient-player-psi.vercel.app/)
