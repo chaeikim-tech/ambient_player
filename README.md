@@ -11,10 +11,11 @@ Project Idea for Web Apps to Build on ReactJS
   *  반응형 웹으로 제작
 
 
-
-
 * 라이브러리
-  * 상태관리 라이브러리 : Recoil
-  * 이미지 넘기는 기능 : SwiperJS
+  * 이미지 넘기는 기능 : react-card-carousel
+  * 스타일 관련 라이브러리 : styled-components
 
+
+* 배포
+  * Vercel 사용 (https://ambient-player-psi.vercel.app/)
 
