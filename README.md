@@ -3,12 +3,14 @@
 Project Idea for Web Apps to Build on ReactJS
 
 ![mainscreen](/public/mainscreen.jpg)
- 
-\[reference\] : https://rainfor.me/
+<br />
+
+💡 [SITE](https://ambient-player-psi.vercel.app/)      
 
 ***
 * 구상
   * 이미지의 분위기에 따른 ambient music 재생
+  * \[reference\] : https://rainfor.me/
 
 
 
